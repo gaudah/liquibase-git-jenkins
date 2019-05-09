@@ -12,6 +12,6 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 <include file="groovy_files/test.groovy"/> 
 <include file="groovy_files/table.groovy"/> 
 <include file="groovy_files/test1.groovy"/>
-<include file="xml_files/add_column_val.xml"/>
+<!--<include file="xml_files/add_column_val.xml"/>-->
 <!--<include file="xml_files/add_column_csv.xml" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>
