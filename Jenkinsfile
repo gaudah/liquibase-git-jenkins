@@ -1,7 +1,8 @@
 node {
 stage('Checkout') {
-echo 'checkout code...'
-git url: 'https://github.com/gaudah/liquibase-git-jenkins.git', credentialsId: '30a90c33-83ea-4aaf-a196-5a256e11c60a', branch: 'master'
+    echo 'Checkout Code Started...'
+    git url: 'https://github.com/gaudah/liquibase-git-jenkins.git', credentialsId: '30a90c33-83ea-4aaf-a196-5a256e11c60a', branch: 'master'
+    echo 'Checkout Completed...'
 }
  
 stage('Update') {
