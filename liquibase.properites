@@ -1,5 +1,5 @@
 # PostGreSQl
 driver=org.postgresql.Driver
-url=jdbc:postgresql://localhost/aishu?user=aishu
-username=aishu
+url=jdbc:postgresql://localhost/postgres?user=postgres
+username=postgres
 password=iauro100
