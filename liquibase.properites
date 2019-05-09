@@ -1,0 +1,5 @@
+# PostGreSQl
+driver=org.postgresql.Driver
+url=jdbc:postgresql://localhost/aishu?user=aishu
+username=aishu
+password=iauro100

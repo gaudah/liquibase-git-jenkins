@@ -1,0 +1,32 @@
+
+Liquibase is an open source solution for managing revisions of your database schema scripts. It works across various types of databases, and supports various file formats for defining the DB structure. The feature that is probably  most attractive in Liquibase is its ability to roll changes back and forward from a specific point - saving you from the need to know what was the last change/script you ran on a specific DB instance.
+Liquibase uses scripts - referred to as "changesets" - to manage the changes you do to your DB. The changesets files can be in various formats including XML, JSON, YAML, and SQL. In the examples below I'm using the XML format.
+As you continue to change an enhance your DB structure through the development lifecycle you'll add more changesets. A master file lists all the changeset files (or the directories where they are). In parallel Liquibase tracks in your database which changesets have already run. 
+When you issue a liquibase update command, liquibase looks at the current state of your DB, and identifies which changes have already happened. Then it run the rest of the changes - getting you to the latest revision of the structure you are defining.
+
+Why and when Liquibase?
+The key differentiator between a self-managed schema create file and Liquibase (or other schema migration tools) is that the latter provides a schema changelog. This is a record of the schema changes over time. It allows the database designer to specify changes in schema & enables programmatic upgrade or downgrade of the schema on demand.
+There are other benefits, such as:
+Database vendor independence (this is questionable, but they try)
+automated documentation
+database schema diffs
+One alternative tool is flyway.
+You would choose to use a schema migration tool when you want or need to automatically manage schema updates without losing data. That is, you expect the schema to change after your system has been deployed to a long-lived environment such as a customer site or stable test environment.
+When you have multiple database instances in dev, qa, production and you want to have a tool to automatically track the change history and apply changes intelligently(apply the diff of current schema and final schema), tools like liquibase or flyway will be very useful.
+
+
+Sites to install Liquibase:
+https://medium.com/@xameeramir/how-to-install-automated-database-deployment-tool-liquibase-3c21f442698f
+
+https://medium.com/instarem-engineering/how-to-automate-database-deployments-using-liquibase-732a6d68637f?sk=0ffc6bd7dcad17996fb1fd998a59e154
+
+https://medium.com/instarem-engineering/how-to-automate-database-deployments-using-liquibase-732a6d68637f?sk=0ffc6bd7dcad17996fb1fd998a59e154
+
+https://www.liquibase.org/documentation/sql_format.html
+
+https://jdbc.postgresql.org/download.html
+
+https://thishosting.rocks/install-java-ubuntu/
+
+https://thishosting.rocks/install-java-ubuntu/#set-up
+

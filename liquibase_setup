@@ -1,0 +1,146 @@
+Step 1: Install and extract Liquibase
+Go to http://download.liquibase.org/download/?frm=y to download the Liquibase binaries. Extract the binaries to a location of your choice
+Example:
+cd Documents/
+mkdir Liquibase
+cp ~/Downloads/liquibase-3.6.3-bin.tar.gz Liquibase/
+cd Liquibase/
+tar -xvzf liquibase-3.6.3-bin.tar.gz 
+cd lib/
+cp ~/Downloads/postgresql-42.2.5.jar .
+cd ..
+vim liquibase-changelog.xml
+# Put below lines in liquibase-changelog.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<include file="sql_files/changeset_sql.sql" relativeToChangelogFile="true"/>
+...more include statements goes here...
+</databaseChangeLog>
+
+
+
+mkdir sql_files
+cd sql_files/
+vim changeset_sql.sql
+# Put below lines in changeset_sql.sql
+--liquibase formatted sql
+--changeset xameeramir:create-test-table
+CREATE TABLE IF NOT EXISTS testTable(
+columnName1 VARCHAR (355)
+);
+--rollback DROP TABLE
+--rollback testTable
+
+
+cd ..
+
+vim liquibase.properites
+# Put below lines in liquibase.properites file
+# PostGreSQl
+driver=org.postgresql.Driver
+url=jdbc:postgresql://localhost/aishu?user=aishu
+username=aishu
+password=iauro100
+
+Step 2: Install Java JDK
+sudo apt-get update
+sudo apt-get install default-jre
+sudo apt-get install default-jdk
+sudo update-alternatives --config java
+
+Step 2: Setup Env 
+sudo vim /etc/environment
+# Put below lines in /etc/environment file
+JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"
+PATH=~/Documents/Liquibase/lib/:$PATH
+CLASSPATH=".:/usr/share/java/mysql-connector-java-8.0.16.jar:/usr/share/java/postgresql-jdbc4-9.2.jar"
+# OR EXPORT 3 LINES ON TERMINAL
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"
+export PATH=~/Documents/Liquibase/lib/:$PATH
+export CLASSPATH=".:/usr/share/java/mysql-connector-java-8.0.16.jar:/usr/share/java/postgresql-jdbc4-9.2.jar"
+
+
+source /etc/environment
+echo $JAVA_HOME
+echo $PATH
+echo $CLASSPATH
+
+Step 2: Setup CLASSPATH
+sudo apt-get install libpostgresql-jdbc-java libpostgresql-jdbc-java-doc
+sudo vim ~/.bashrc
+# Put below lines in ~/.bashrc file
+
+# Add classpath
+export CLASSPATH=$CLASSPATH:usr/share/java/postgresql-jdbc4-9.2.jar
+
+source ~/.bashrc
+echo $CLASSPATH
+javac -version
+java -version
+
+Please Note:=
+I have java sdk 8 that’s why i used postgresql-jdbc4-9.2.jar file.
+Based on your java sdk version you install respective jdbc driver for postgres on https://jdbc.postgresql.org/download.html site.
+
+
+Step 2: Run changeset in liquibase
+
+liquibase --changeLogFile=./liquibase-changelog.xml --username=aishu --password=iauro100 --classpath=./lib/postgresql-42.2.5.jar --url=jdbc:postgresql://localhost/aishu?user=aishu&password=iauro100&ssl=true update
+
+	OR
+
+    2)liquibase  --changeLogFile=liquibase-changelog.xml     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            update
+
+
+#  Rollback database to version 1.0
+# Command to rollback to previous version where 1.0 should be tag in changeset
+liquibase  --changeLogFile=liquibase-changelog.xml     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            rollback 1.0
+
+# apply change log to a specified version
+liquibase  --changeLogFile=liquibase-changelog.xml     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            updateToTag 1.1
+
+Now check are tables created in psql or not.
+Please Note:=
+You have to install postgresql firstly with username,password and db of your choice.
+
+And for testing please run java program below is the site. Replace username,password and db of your in code.
+https://stackoverflow.com/questions/13860024/postgresql-installing-jdbc-driver
+
+javac TestDB.java  # Compile java prog
+java TestDB   # Run java prog
+
+
+5. Generate ChangeLog from existent tables
+# For Generate changeset in sql format
+# Please Note:= compelled.h2.sql this should be file format for sql
+liquibase  --changeLogFile=sql_files/compelled.h2.sql     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            generateChangeLog
+
+
+# For Generate changeset in xml format
+liquibase  --changeLogFile=xml_files/compelled_db.xml     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            generateChangeLog
+
+
+# For Generate changeset in json format
+liquibase  --changeLogFile=json_files/compelled.json     --defaultsFile=liquibase.properites            --classpath=./lib/postgresql-42.2.5.jar    --url=jdbc:postgresql://localhost/aishu            generateChangeLog
+
+
+
+Sites referred:=
+
+https://medium.com/@xameeramir/how-to-install-automated-database-deployment-tool-liquibase-3c21f442698f
+https://jdbc.postgresql.org/download.html
+https://medium.com/instarem-engineering/how-to-automate-database-deployments-using-liquibase-732a6d68637f?sk=0ffc6bd7dcad17996fb1fd998a59e154
+https://medium.com/@xameeramir/how-to-install-automated-database-deployment-tool-liquibase-3c21f442698f
+https://www.liquibase.org/documentation/sql_format.html
+
+https://stackoverflow.com/questions/13860024/postgresql-installing-jdbc-driver
+https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04
+
+
+
+http://shengwangi.blogspot.com/2016/04/liquibase-helloworld-example.html
+
+

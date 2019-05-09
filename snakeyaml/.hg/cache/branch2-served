@@ -1,0 +1,7 @@
+601ef081c90e0e12c7de0d73eb8a47e1e05c867e 1244
+896b47c03d8103fb6ff370489db787654e01ad5a c 323 handle surrogate code points
+0618d2a2c496ffc5b0d2d60c674e7bd6237fe76e c 326-extra-code-for-parser
+601ef081c90e0e12c7de0d73eb8a47e1e05c867e o default
+0ee496dd7bb7e0b1c851bff2cc071b8e7b56c273 c schulzhans/import-serializable-to-fix-build-error-1481811680627
+065e6f1d70906f8497adcf710bb6cadce0a6f7a9 c schulzhans/let-mark-implement-serializable-so-that--1481807715657
+08b9190028b862b99d03f41b8902576d2edf458d c slachiewicz/build-in-batch-mode-1519944377383

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<changeSet author="new2" id="insert-example-13">
+	<insert tableName="department">
+		<column name="id" type="int" valueNumeric="21"/>
+        	<column name="dept_name" type="varchar(255)" value="compsci1"/>
+        </insert>
+
+ 	<insert tableName="employee">
+		<column name="id" type="int" valueNumeric="13"/>
+        	<column name="emp_name" type="varchar(255)" value="aishwarya1"/>
+		<column name="dept" type="int" valueNumeric="21"/>
+        </insert>
+</changeSet>
+</databaseChangeLog>
+    
+
+

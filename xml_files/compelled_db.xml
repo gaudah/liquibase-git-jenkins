@@ -1,0 +1,3286 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="aishu (generated)" id="1557303664046-1">
+        <createTable tableName="Activities">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Activities_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="caption" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_starred" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_complete" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="web_link" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(1024)"/>
+            <column name="activity_category_id" type="UUID"/>
+            <column name="parent_activity_id" type="UUID"/>
+            <column name="place_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="originated_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="originated_from_id" type="UUID"/>
+            <column name="list_category_id" type="UUID"/>
+            <column name="copied_from_id" type="UUID"/>
+            <column name="copied_from_user_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-2">
+        <createTable tableName="ActivityAssets">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ActivityAssets_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_url" type="VARCHAR(1024)"/>
+            <column name="asset_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-3">
+        <createTable tableName="ActivityCategories">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ActivityCategories_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_activity_category_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-4">
+        <createTable tableName="ActivityLists">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ActivityLists_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-5">
+        <createTable tableName="ApplicationConfigs">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ApplicationConfigs_pkey"/>
+            </column>
+            <column name="inbox_polling_time" type="INTEGER"/>
+            <column name="page_size" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id_id" type="UUID"/>
+            <column name="distance_in" type="VARCHAR(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followee_saves_entry_list" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="follower_saves_entry_list" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="non_followee_saves_entry" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_when_new_follower" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shared" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+            <column name="invite_on_to_collaborate" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="non_follower_saves_entry" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_collab_privacy_change" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_list_follow" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_new_collab_user_invite" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notify_on_collab_list_admin" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-6">
+        <createTable tableName="ArchivedUrls">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ArchivedUrls_pkey"/>
+            </column>
+            <column name="url" type="VARCHAR(1024)"/>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-7">
+        <createTable tableName="CollaborativeListActivities">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CollaborativeListActivities_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_starred" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_complete" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-8">
+        <createTable tableName="CollaborativeListGeoFences">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CollaborativeListGeoFences_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="proximity" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activate_after" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="end_repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-9">
+        <createTable tableName="CollaborativeListReminders">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CollaborativeListReminders_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alert_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_alert_on" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_sms" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_email" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="end_repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="snooze_start_time" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-10">
+        <createTable tableName="CollaborativeListRoles">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CollaborativeListRoles_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_approved" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_by_id" type="UUID"/>
+            <column name="invited_by_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-11">
+        <createTable tableName="CompelldConfigurations">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CompelldConfigurations_pkey"/>
+            </column>
+            <column name="aws_s3_bucket" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_s3_url" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_access_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_secret_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="google_client_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="facebook_api_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_sender" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_list_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_verification_template_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_reset_template_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mandrill_api_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_upload_path" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_config_min_version" type="VARCHAR(25)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-12">
+        <createTable tableName="CompelldEmailSettings">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="CompelldEmailSettings_pkey"/>
+            </column>
+            <column name="save_entry_email" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="save_entry_email_password" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-13">
+        <createTable tableName="DeviceInfos">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="DeviceInfos_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notification_token" type="VARCHAR(1024)"/>
+            <column name="os_version" type="VARCHAR(50)"/>
+            <column name="device_type" type="VARCHAR(50)"/>
+            <column name="user_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-14">
+        <createTable tableName="FeaturedLists">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="FeaturedLists_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-15">
+        <createTable tableName="FeaturedUsers">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="FeaturedUsers_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_image_url" type="VARCHAR(1024)"/>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-16">
+        <createTable tableName="FeaturedUsersLists">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="FeaturedUsersLists_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="featured_order" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-17">
+        <createTable tableName="Followers">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Followers_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_reason" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_approved" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followee_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-18">
+        <createTable tableName="FriendLists">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="FriendLists_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)"/>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="provider" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_id" type="VARCHAR(1024)"/>
+            <column name="is_followed" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invite_sent_on" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="profile_pic" type="VARCHAR(1024)"/>
+            <column name="compelld_user_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-19">
+        <createTable tableName="FriendListsTemp"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-20">
+        <createTable tableName="FriendSearchKeywords">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="FriendSearchKeywords_pkey"/>
+            </column>
+            <column name="keyword" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="frequency" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-21">
+        <createTable tableName="GeoFences">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="GeoFences_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="proximity" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activate_after" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-22">
+        <createTable tableName="HomeModules">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="HomeModules_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-23">
+        <createTable tableName="ListCategories">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ListCategories_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_list_category_id" type="UUID"/>
+            <column name="collection_ideas" type="_VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cta_entry" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-24">
+        <createTable tableName="ListFollowers">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ListFollowers_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-25">
+        <createTable tableName="ListMappings">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="ListMapping_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="child_list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_owner" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-26">
+        <createTable tableName="Lists">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Lists_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_art_url" type="VARCHAR(1024)"/>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_list_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_collaborative" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_root" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="originated_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="originated_from_id" type="UUID"/>
+            <column name="list_category_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-27">
+        <createTable tableName="PlaceTypes">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="PlaceTypes_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-28">
+        <createTable tableName="Places">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Places_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lat" type="FLOAT8"/>
+            <column name="lng" type="FLOAT8"/>
+            <column name="name" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="VARCHAR(1024)"/>
+            <column name="source_place_id" type="VARCHAR(1024)"/>
+            <column name="image_url" type="VARCHAR(1024)"/>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="TEXT"/>
+            <column name="display_address" type="TEXT"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(50)"/>
+            <column name="website" type="VARCHAR(1024)"/>
+            <column name="place_type_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-29">
+        <createTable tableName="Ratings">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Ratings_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="place_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-30">
+        <createTable tableName="Reminders">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Reminders_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alert_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_alert_on" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_sms" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_email" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_start_time" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-31">
+        <createTable tableName="SearchKeywords">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="SearchKeywords_pkey"/>
+            </column>
+            <column name="keyword" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+            <column name="frequency" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-32">
+        <createTable tableName="Shares">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Shares_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="list_id" type="UUID"/>
+            <column name="shared_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shared_with_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-33">
+        <createTable tableName="TermsOfServices">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="TermsOfServices_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="major_version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="minor_version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patch_version" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-34">
+        <createTable tableName="UserHomeModules">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="UserHomeModules_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="home_module_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-35">
+        <createTable tableName="UserInboxes">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="UserInboxes_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(1024)"/>
+            <column name="message_type" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivered" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="read" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="from_user_id" type="UUID"/>
+            <column name="list_id" type="UUID"/>
+            <column name="to_user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_user_id" type="UUID"/>
+            <column name="parent_list_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-36">
+        <createTable tableName="UserVerifications">
+            <column name="token_id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="UserVerifications_pkey"/>
+            </column>
+            <column name="expires_in" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-37">
+        <createTable tableName="Users">
+            <column name="last_login" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="is_superuser" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Users_pkey"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="oauth_provider" type="VARCHAR(10)"/>
+            <column name="password" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="screen_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_image_url" type="VARCHAR(1024)"/>
+            <column name="description" type="TEXT"/>
+            <column name="location" type="TEXT"/>
+            <column name="account_type" type="INTEGER"/>
+            <column name="organization_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization_type" type="INTEGER"/>
+            <column name="last_login_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="default_timezone" type="VARCHAR(50)"/>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="access_token" type="TEXT"/>
+            <column name="refresh_token" type="TEXT"/>
+            <column name="media_user_id" type="VARCHAR(1024)"/>
+            <column name="expires_in" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_email_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mailchimp_subscriber_id" type="VARCHAR(255)"/>
+            <column name="is_featured" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="website" type="TEXT"/>
+            <column name="last_password_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="is_gdpr_compliant" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="terms_of_services_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-38">
+        <createTable tableName="Users_groups">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Users_groups_pkey"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-39">
+        <createTable tableName="Users_user_permissions">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="Users_user_permissions_pkey"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-40">
+        <createTable tableName="auth_group">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="auth_group_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-41">
+        <createTable tableName="auth_group_permissions">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="auth_group_permissions_pkey"/>
+            </column>
+            <column name="group_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-42">
+        <createTable tableName="auth_permission">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="auth_permission_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content_type_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="codename" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-43">
+        <createTable tableName="background_task">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="background_task_pkey"/>
+            </column>
+            <column name="task_name" type="VARCHAR(190)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_params" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_hash" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verbose_name" type="VARCHAR(255)"/>
+            <column name="priority" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="run_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat_until" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="queue" type="VARCHAR(190)"/>
+            <column name="attempts" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="failed_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="last_error" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locked_by" type="VARCHAR(64)"/>
+            <column name="locked_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="creator_object_id" type="INTEGER"/>
+            <column name="creator_content_type_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-44">
+        <createTable tableName="background_task_completedtask">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="background_task_completedtask_pkey"/>
+            </column>
+            <column name="task_name" type="VARCHAR(190)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_params" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_hash" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verbose_name" type="VARCHAR(255)"/>
+            <column name="priority" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="run_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat_until" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="queue" type="VARCHAR(190)"/>
+            <column name="attempts" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="failed_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="last_error" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locked_by" type="VARCHAR(64)"/>
+            <column name="locked_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="creator_object_id" type="INTEGER"/>
+            <column name="creator_content_type_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-45">
+        <createTable tableName="compelld_app_activity">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_activity_pkey"/>
+            </column>
+            <column name="caption" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_starred" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="web_link" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_category_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_activity_id" type="UUID"/>
+            <column name="place_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="due_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="is_complete" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_url" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-46">
+        <createTable tableName="compelld_app_activityasset">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_activityasset_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_url" type="VARCHAR(200)"/>
+            <column name="asset_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-47">
+        <createTable tableName="compelld_app_activitycategory">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_activitycategory_pkey"/>
+            </column>
+            <column name="image_url" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_activity_category_id" type="UUID"/>
+            <column name="sequence" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-48">
+        <createTable tableName="compelld_app_activitylist">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_activitylist_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-49">
+        <createTable tableName="compelld_app_applicationconfigs">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_applicationconfigs_pkey"/>
+            </column>
+            <column name="inbox_polling_time" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="page_size" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-50">
+        <createTable tableName="compelld_app_compelldconfigurations">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_compelldconfigurations_pkey"/>
+            </column>
+            <column name="aws_s3_bucket" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_s3_url" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_access_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aws_secret_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="google_client_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_sender" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mail_chimp_list_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="facebook_api_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_verification_template_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mandrill_api_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_reset_template_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_upload_path" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-51">
+        <createTable tableName="compelld_app_deviceinfo">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_deviceinfo_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="device_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notification_token" type="VARCHAR(1024)"/>
+            <column name="os_version" type="VARCHAR(50)"/>
+            <column name="device_type" type="VARCHAR(50)"/>
+            <column name="user_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-52">
+        <createTable tableName="compelld_app_follower">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_follower_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_reason" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followee_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="followed_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_approved" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-53">
+        <createTable tableName="compelld_app_friendlist">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_friendlist_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)"/>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="provider" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="provider_id" type="VARCHAR(1024)"/>
+            <column name="is_followed" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invite_sent_on" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="profile_pic" type="VARCHAR(200)"/>
+            <column name="compelld_user_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-54">
+        <createTable tableName="compelld_app_geofence">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_geofence_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="proximity" type="FLOAT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activate_after" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-55">
+        <createTable tableName="compelld_app_list">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_list_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_art_url" type="VARCHAR(200)"/>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_list_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-56">
+        <createTable tableName="compelld_app_place">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_place_pkey"/>
+            </column>
+            <column name="lat" type="FLOAT8"/>
+            <column name="lng" type="FLOAT8"/>
+            <column name="name" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="VARCHAR(1024)"/>
+            <column name="source_place_id" type="VARCHAR(1024)"/>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="place_type_id" type="UUID"/>
+            <column name="image_url" type="VARCHAR(200)"/>
+            <column name="address" type="TEXT"/>
+            <column name="display_address" type="TEXT"/>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="website" type="VARCHAR(200)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-57">
+        <createTable tableName="compelld_app_placetype">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_placetype_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-58">
+        <createTable tableName="compelld_app_ratings">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_ratings_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="place_id" type="UUID"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-59">
+        <createTable tableName="compelld_app_reminder">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_reminder_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="alert_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_sms" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_to_email" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_triggered_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="snooze_status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_retry" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="repeat" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_alert_on" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-60">
+        <createTable tableName="compelld_app_share">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_share_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="shared_by_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="list_id" type="UUID"/>
+            <column name="shared_with_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-61">
+        <createTable tableName="compelld_app_user">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_user_pkey"/>
+            </column>
+            <column name="email" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="oauth_provider" type="VARCHAR(10)"/>
+            <column name="password" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="screen_name" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profile_image_url" type="VARCHAR(200)"/>
+            <column name="account_type" type="INTEGER"/>
+            <column name="organization_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization_type" type="INTEGER"/>
+            <column name="last_login_at" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="default_timezone" type="VARCHAR(50)"/>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="access_token" type="TEXT"/>
+            <column name="refresh_token" type="TEXT"/>
+            <column name="expires_in" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_email_verified" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_login" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="is_superuser" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="media_user_id" type="VARCHAR(1024)"/>
+            <column name="description" type="TEXT"/>
+            <column name="location" type="TEXT"/>
+            <column name="is_public" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mailchimp_subscriber_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-62">
+        <createTable tableName="compelld_app_user_groups">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_user_groups_pkey"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-63">
+        <createTable tableName="compelld_app_user_user_permissions">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_user_user_permissions_pkey"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="permission_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-64">
+        <createTable tableName="compelld_app_userinbox">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_userinbox_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message_type" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="delivered" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="read" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="from_user_id" type="UUID"/>
+            <column name="to_user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activity_id" type="UUID"/>
+            <column name="list_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-65">
+        <createTable tableName="compelld_app_userverification">
+            <column name="token_id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="compelld_app_userverification_pkey"/>
+            </column>
+            <column name="expires_in" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-66">
+        <createTable tableName="department">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="department_pkey"/>
+            </column>
+            <column name="dept_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-67">
+        <createTable tableName="django_admin_log">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="django_admin_log_pkey"/>
+            </column>
+            <column name="action_time" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="object_id" type="TEXT"/>
+            <column name="object_repr" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="action_flag" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="change_message" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content_type_id" type="INTEGER"/>
+            <column name="user_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-68">
+        <createTable tableName="django_content_type">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="django_content_type_pkey"/>
+            </column>
+            <column name="app_label" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-69">
+        <createTable tableName="django_migrations">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="django_migrations_pkey"/>
+            </column>
+            <column name="app" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="applied" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-70">
+        <createTable tableName="django_session">
+            <column name="session_key" type="VARCHAR(40)">
+                <constraints primaryKey="true" primaryKeyName="django_session_pkey"/>
+            </column>
+            <column name="session_data" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expire_date" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-71">
+        <createTable tableName="employee">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true" primaryKeyName="employee_pkey"/>
+            </column>
+            <column name="emp_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dept" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-72">
+        <createTable tableName="testtable">
+            <column name="columnname1" type="VARCHAR(355)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-73">
+        <addUniqueConstraint columnNames="uuid" constraintName="Activities_uuid_key" tableName="Activities"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-74">
+        <addUniqueConstraint columnNames="uuid" constraintName="ActivityAssets_uuid_key" tableName="ActivityAssets"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-75">
+        <addUniqueConstraint columnNames="sequence" constraintName="ActivityCategories_sequence_key" tableName="ActivityCategories"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-76">
+        <addUniqueConstraint columnNames="uuid" constraintName="ActivityCategories_uuid_key" tableName="ActivityCategories"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-77">
+        <addUniqueConstraint columnNames="activity_id, list_id" constraintName="ActivityLists_activity_id_list_id_f2d42ff6_uniq" tableName="ActivityLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-78">
+        <addUniqueConstraint columnNames="uuid" constraintName="ActivityLists_uuid_key" tableName="ActivityLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-79">
+        <addUniqueConstraint columnNames="device_id_id, user_id" constraintName="ApplicationConfigs_device_id_id_user_id_49b396ae_uniq" tableName="ApplicationConfigs"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-80">
+        <addUniqueConstraint columnNames="user_id, list_id, activity_id" constraintName="CollaborativeListActivit_user_id_list_id_activity_3162fdce_uniq" tableName="CollaborativeListActivities"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-81">
+        <addUniqueConstraint columnNames="uuid" constraintName="CollaborativeListActivities_uuid_key" tableName="CollaborativeListActivities"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-82">
+        <addUniqueConstraint columnNames="place_id" constraintName="CollaborativeListGeoFences_place_id_key" tableName="CollaborativeListGeoFences"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-83">
+        <addUniqueConstraint columnNames="uuid" constraintName="CollaborativeListGeoFences_uuid_key" tableName="CollaborativeListGeoFences"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-84">
+        <addUniqueConstraint columnNames="user_id, activity_id" constraintName="CollaborativeListReminders_user_id_activity_id_e9895616_uniq" tableName="CollaborativeListReminders"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-85">
+        <addUniqueConstraint columnNames="uuid" constraintName="CollaborativeListReminders_uuid_key" tableName="CollaborativeListReminders"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-86">
+        <addUniqueConstraint columnNames="user_id, list_id" constraintName="CollaborativeListRoles_user_id_list_id_9a011230_uniq" tableName="CollaborativeListRoles"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-87">
+        <addUniqueConstraint columnNames="uuid" constraintName="CollaborativeListRoles_uuid_key" tableName="CollaborativeListRoles"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-88">
+        <addUniqueConstraint columnNames="device_id, user_id" constraintName="DeviceInfos_device_id_user_id_594b3c4f_uniq" tableName="DeviceInfos"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-89">
+        <addUniqueConstraint columnNames="uuid" constraintName="DeviceInfos_uuid_key" tableName="DeviceInfos"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-90">
+        <addUniqueConstraint columnNames="uuid" constraintName="FeaturedLists_uuid_key" tableName="FeaturedLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-91">
+        <addUniqueConstraint columnNames="uuid" constraintName="FeaturedUsersLists_uuid_key" tableName="FeaturedUsersLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-92">
+        <addUniqueConstraint columnNames="user_id" constraintName="FeaturedUsers_user_id_20ce47fd_uniq" tableName="FeaturedUsers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-93">
+        <addUniqueConstraint columnNames="uuid" constraintName="FeaturedUsers_uuid_key" tableName="FeaturedUsers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-94">
+        <addUniqueConstraint columnNames="followee_id, followed_by_id" constraintName="Followers_followee_id_followed_by_id_bc874a7d_uniq" tableName="Followers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-95">
+        <addUniqueConstraint columnNames="uuid" constraintName="Followers_uuid_key" tableName="Followers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-96">
+        <addUniqueConstraint columnNames="user_id, compelld_user_id" constraintName="FriendLists_user_id_compelld_user_id_33641b56_uniq" tableName="FriendLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-97">
+        <addUniqueConstraint columnNames="uuid" constraintName="FriendLists_uuid_key" tableName="FriendLists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-98">
+        <addUniqueConstraint columnNames="keyword, user_id" constraintName="FriendSearchKeywords_keyword_user_id_3d91771f_uniq" tableName="FriendSearchKeywords"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-99">
+        <addUniqueConstraint columnNames="place_id" constraintName="GeoFences_place_id_key" tableName="GeoFences"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-100">
+        <addUniqueConstraint columnNames="uuid" constraintName="GeoFences_uuid_key" tableName="GeoFences"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-101">
+        <addUniqueConstraint columnNames="name" constraintName="HomeModules_name_9078791d_uniq" tableName="HomeModules"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-102">
+        <addUniqueConstraint columnNames="uuid" constraintName="HomeModules_uuid_key" tableName="HomeModules"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-103">
+        <addUniqueConstraint columnNames="sequence" constraintName="ListCategories_sequence_key" tableName="ListCategories"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-104">
+        <addUniqueConstraint columnNames="uuid" constraintName="ListCategories_uuid_key" tableName="ListCategories"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-105">
+        <addUniqueConstraint columnNames="list_id, followed_by_id" constraintName="ListFollowers_list_id_followed_by_id_463a905c_uniq" tableName="ListFollowers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-106">
+        <addUniqueConstraint columnNames="uuid" constraintName="ListFollowers_uuid_key" tableName="ListFollowers"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-107">
+        <addUniqueConstraint columnNames="parent_list_id, child_list_id" constraintName="ListMapping_parent_list_id_child_list_id_94e67c78_uniq" tableName="ListMappings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-108">
+        <addUniqueConstraint columnNames="uuid" constraintName="ListMapping_uuid_key" tableName="ListMappings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-109">
+        <addUniqueConstraint columnNames="uuid" constraintName="Lists_uuid_key" tableName="Lists"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-110">
+        <addUniqueConstraint columnNames="uuid" constraintName="PlaceTypes_uuid_key" tableName="PlaceTypes"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-111">
+        <addUniqueConstraint columnNames="uuid" constraintName="Places_uuid_key" tableName="Places"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-112">
+        <addUniqueConstraint columnNames="user_id, activity_id" constraintName="Ratings_user_id_activity_id_01b05c79_uniq" tableName="Ratings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-113">
+        <addUniqueConstraint columnNames="user_id, place_id" constraintName="Ratings_user_id_place_id_4ca78726_uniq" tableName="Ratings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-114">
+        <addUniqueConstraint columnNames="uuid" constraintName="Ratings_uuid_key" tableName="Ratings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-115">
+        <addUniqueConstraint columnNames="uuid" constraintName="Reminders_uuid_key" tableName="Reminders"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-116">
+        <addUniqueConstraint columnNames="keyword, user_id" constraintName="SearchKeywords_keyword_user_id_92e169e3_uniq" tableName="SearchKeywords"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-117">
+        <addUniqueConstraint columnNames="uuid" constraintName="Shares_uuid_key" tableName="Shares"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-118">
+        <addUniqueConstraint columnNames="major_version, minor_version, patch_version" constraintName="TermsOfServices_major_version_minor_vers_425520ee_uniq" tableName="TermsOfServices"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-119">
+        <addUniqueConstraint columnNames="uuid" constraintName="TermsOfServices_uuid_key" tableName="TermsOfServices"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-120">
+        <addUniqueConstraint columnNames="uuid" constraintName="UserHomeModules_uuid_key" tableName="UserHomeModules"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-121">
+        <addUniqueConstraint columnNames="uuid" constraintName="UserInboxes_uuid_key" tableName="UserInboxes"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-122">
+        <addUniqueConstraint columnNames="user_id" constraintName="UserVerifications_user_id_key" tableName="UserVerifications"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-123">
+        <addUniqueConstraint columnNames="email" constraintName="Users_email_key" tableName="Users"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-124">
+        <addUniqueConstraint columnNames="user_id, group_id" constraintName="Users_groups_user_id_group_id_590dc796_uniq" tableName="Users_groups"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-125">
+        <addUniqueConstraint columnNames="screen_name" constraintName="Users_screen_name_key" tableName="Users"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-126">
+        <addUniqueConstraint columnNames="user_id, permission_id" constraintName="Users_user_permissions_user_id_permission_id_f5781f04_uniq" tableName="Users_user_permissions"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-127">
+        <addUniqueConstraint columnNames="uuid" constraintName="Users_uuid_key" tableName="Users"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-128">
+        <addUniqueConstraint columnNames="name" constraintName="auth_group_name_key" tableName="auth_group"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-129">
+        <addUniqueConstraint columnNames="group_id, permission_id" constraintName="auth_group_permissions_group_id_permission_id_0cd325b0_uniq" tableName="auth_group_permissions"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-130">
+        <addUniqueConstraint columnNames="content_type_id, codename" constraintName="auth_permission_content_type_id_codename_01ab375a_uniq" tableName="auth_permission"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-131">
+        <addUniqueConstraint columnNames="sequence" constraintName="compelld_app_activitycategory_sequence_key" tableName="compelld_app_activitycategory"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-132">
+        <addUniqueConstraint columnNames="activity_id, list_id" constraintName="compelld_app_activitylist_activity_id_list_id_7aff7320_uniq" tableName="compelld_app_activitylist"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-133">
+        <addUniqueConstraint columnNames="device_id" constraintName="compelld_app_deviceinfo_device_id_da126f6b_uniq" tableName="compelld_app_deviceinfo"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-134">
+        <addUniqueConstraint columnNames="followee_id, followed_by_id" constraintName="compelld_app_follower_followee_id_followed_by_id_6c6f1f23_uniq" tableName="compelld_app_follower"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-135">
+        <addUniqueConstraint columnNames="user_id, compelld_user_id" constraintName="compelld_app_friendlist_user_id_compelld_user_id_b63221a5_uniq" tableName="compelld_app_friendlist"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-136">
+        <addUniqueConstraint columnNames="place_id" constraintName="compelld_app_geofence_place_id_key" tableName="compelld_app_geofence"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-137">
+        <addUniqueConstraint columnNames="user_id, activity_id" constraintName="compelld_app_ratings_user_id_activity_id_c1bd6d17_uniq" tableName="compelld_app_ratings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-138">
+        <addUniqueConstraint columnNames="user_id, place_id" constraintName="compelld_app_ratings_user_id_place_id_e393a371_uniq" tableName="compelld_app_ratings"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-139">
+        <addUniqueConstraint columnNames="email" constraintName="compelld_app_user_email_88dce67e_uniq" tableName="compelld_app_user"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-140">
+        <addUniqueConstraint columnNames="user_id, group_id" constraintName="compelld_app_user_groups_user_id_group_id_d37eec52_uniq" tableName="compelld_app_user_groups"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-141">
+        <addUniqueConstraint columnNames="screen_name" constraintName="compelld_app_user_screen_name_0ffaa8b3_uniq" tableName="compelld_app_user"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-142">
+        <addUniqueConstraint columnNames="user_id, permission_id" constraintName="compelld_app_user_user_p_user_id_permission_id_fb86aeab_uniq" tableName="compelld_app_user_user_permissions"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-143">
+        <addUniqueConstraint columnNames="user_id" constraintName="compelld_app_userverification_user_id_key" tableName="compelld_app_userverification"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-144">
+        <addUniqueConstraint columnNames="app_label, model" constraintName="django_content_type_app_label_model_76bd3d3b_uniq" tableName="django_content_type"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-145">
+        <createIndex indexName="Activities_activity_category_id_9c551642" tableName="Activities">
+            <column name="activity_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-146">
+        <createIndex indexName="Activities_copied_from_id_dc7660b9" tableName="Activities">
+            <column name="copied_from_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-147">
+        <createIndex indexName="Activities_copied_from_user_id_741bba3e" tableName="Activities">
+            <column name="copied_from_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-148">
+        <createIndex indexName="Activities_list_category_id_2689948f" tableName="Activities">
+            <column name="list_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-149">
+        <createIndex indexName="Activities_originated_from_id_dfe0e750" tableName="Activities">
+            <column name="originated_from_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-150">
+        <createIndex indexName="Activities_parent_activity_id_0cf24a9e" tableName="Activities">
+            <column name="parent_activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-151">
+        <createIndex indexName="Activities_place_id_605ba543" tableName="Activities">
+            <column name="place_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-152">
+        <createIndex indexName="Activities_user_id_85702ab4" tableName="Activities">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-153">
+        <createIndex indexName="ActivityAssets_activity_id_fab92a2a" tableName="ActivityAssets">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-154">
+        <createIndex indexName="ActivityAssets_user_id_3dc25968" tableName="ActivityAssets">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-155">
+        <createIndex indexName="ActivityCategories_parent_activity_category_id_262b3149" tableName="ActivityCategories">
+            <column name="parent_activity_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-156">
+        <createIndex indexName="ActivityLists_activity_id_e62ec092" tableName="ActivityLists">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-157">
+        <createIndex indexName="ActivityLists_list_id_0f896df6" tableName="ActivityLists">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-158">
+        <createIndex indexName="ActivityLists_user_id_8766573e" tableName="ActivityLists">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-159">
+        <createIndex indexName="ApplicationConfigs_device_id_id_6c01def5" tableName="ApplicationConfigs">
+            <column name="device_id_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-160">
+        <createIndex indexName="ApplicationConfigs_user_id_0a1be298" tableName="ApplicationConfigs">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-161">
+        <createIndex indexName="CollaborativeListActivities_activity_id_b86d5d38" tableName="CollaborativeListActivities">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-162">
+        <createIndex indexName="CollaborativeListActivities_list_id_0452bce4" tableName="CollaborativeListActivities">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-163">
+        <createIndex indexName="CollaborativeListActivities_user_id_ad26b45a" tableName="CollaborativeListActivities">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-164">
+        <createIndex indexName="CollaborativeListGeoFences_activity_id_5168ec88" tableName="CollaborativeListGeoFences">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-165">
+        <createIndex indexName="CollaborativeListGeoFences_user_id_04411db2" tableName="CollaborativeListGeoFences">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-166">
+        <createIndex indexName="CollaborativeListReminders_activity_id_f6bd83d0" tableName="CollaborativeListReminders">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-167">
+        <createIndex indexName="CollaborativeListReminders_user_id_96539333" tableName="CollaborativeListReminders">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-168">
+        <createIndex indexName="CollaborativeListRoles_deleted_by_id_739b0f5c" tableName="CollaborativeListRoles">
+            <column name="deleted_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-169">
+        <createIndex indexName="CollaborativeListRoles_invited_by_id_843308f5" tableName="CollaborativeListRoles">
+            <column name="invited_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-170">
+        <createIndex indexName="CollaborativeListRoles_list_id_9e60a7a2" tableName="CollaborativeListRoles">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-171">
+        <createIndex indexName="CollaborativeListRoles_user_id_397a4ae3" tableName="CollaborativeListRoles">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-172">
+        <createIndex indexName="DeviceInfos_user_id_b2da0a49" tableName="DeviceInfos">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-173">
+        <createIndex indexName="FeaturedLists_list_id_574e1864" tableName="FeaturedLists">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-174">
+        <createIndex indexName="FeaturedLists_user_id_6a22160b" tableName="FeaturedLists">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-175">
+        <createIndex indexName="FeaturedUsersLists_list_id_c0e2c2ad" tableName="FeaturedUsersLists">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-176">
+        <createIndex indexName="FeaturedUsersLists_user_id_3addc797" tableName="FeaturedUsersLists">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-177">
+        <createIndex indexName="Followers_followed_by_id_6ee9e054" tableName="Followers">
+            <column name="followed_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-178">
+        <createIndex indexName="Followers_followee_id_ec66e011" tableName="Followers">
+            <column name="followee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-179">
+        <createIndex indexName="FriendLists_compelld_user_id_02f49dec" tableName="FriendLists">
+            <column name="compelld_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-180">
+        <createIndex indexName="FriendLists_user_id_10d3a979" tableName="FriendLists">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-181">
+        <createIndex indexName="FriendSearchKeywords_user_id_a0dcd00d" tableName="FriendSearchKeywords">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-182">
+        <createIndex indexName="GeoFences_activity_id_d65da973" tableName="GeoFences">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-183">
+        <createIndex indexName="GeoFences_user_id_8388ffb6" tableName="GeoFences">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-184">
+        <createIndex indexName="ListCategories_parent_list_category_id_0737dd3f" tableName="ListCategories">
+            <column name="parent_list_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-185">
+        <createIndex indexName="ListFollowers_followed_by_id_b58e880c" tableName="ListFollowers">
+            <column name="followed_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-186">
+        <createIndex indexName="ListFollowers_list_id_052c8963" tableName="ListFollowers">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-187">
+        <createIndex indexName="ListMapping_child_list_id_fc800676" tableName="ListMappings">
+            <column name="child_list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-188">
+        <createIndex indexName="ListMapping_parent_list_id_d8448631" tableName="ListMappings">
+            <column name="parent_list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-189">
+        <createIndex indexName="ListMapping_user_id_4676babc" tableName="ListMappings">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-190">
+        <createIndex indexName="Lists_list_category_id_a8756374" tableName="Lists">
+            <column name="list_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-191">
+        <createIndex indexName="Lists_originated_from_id_e48c3d6d" tableName="Lists">
+            <column name="originated_from_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-192">
+        <createIndex indexName="Lists_parent_list_id_053a3775" tableName="Lists">
+            <column name="parent_list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-193">
+        <createIndex indexName="Lists_user_id_6303ce03" tableName="Lists">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-194">
+        <createIndex indexName="Places_place_type_id_d3b42df0" tableName="Places">
+            <column name="place_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-195">
+        <createIndex indexName="Ratings_activity_id_6d50b15a" tableName="Ratings">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-196">
+        <createIndex indexName="Ratings_place_id_9090432b" tableName="Ratings">
+            <column name="place_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-197">
+        <createIndex indexName="Ratings_user_id_31a8a7d1" tableName="Ratings">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-198">
+        <createIndex indexName="Reminders_activity_id_4179429b" tableName="Reminders">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-199">
+        <createIndex indexName="Reminders_user_id_c6839c25" tableName="Reminders">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-200">
+        <createIndex indexName="SearchKeywords_user_id_66a6e7fd" tableName="SearchKeywords">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-201">
+        <createIndex indexName="Shares_activity_id_de7a2f19" tableName="Shares">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-202">
+        <createIndex indexName="Shares_list_id_f094b66f" tableName="Shares">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-203">
+        <createIndex indexName="Shares_shared_by_id_96f74b1f" tableName="Shares">
+            <column name="shared_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-204">
+        <createIndex indexName="Shares_shared_with_id_029e12ce" tableName="Shares">
+            <column name="shared_with_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-205">
+        <createIndex indexName="UserHomeModules_home_module_id_aa2eba9e" tableName="UserHomeModules">
+            <column name="home_module_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-206">
+        <createIndex indexName="UserHomeModules_user_id_8bf0d5e7" tableName="UserHomeModules">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-207">
+        <createIndex indexName="UserInboxes_activity_id_5d5d1d1a" tableName="UserInboxes">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-208">
+        <createIndex indexName="UserInboxes_followed_user_id_2fa9c019" tableName="UserInboxes">
+            <column name="followed_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-209">
+        <createIndex indexName="UserInboxes_from_user_id_c65780d2" tableName="UserInboxes">
+            <column name="from_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-210">
+        <createIndex indexName="UserInboxes_list_id_1c17be20" tableName="UserInboxes">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-211">
+        <createIndex indexName="UserInboxes_parent_list_id_7aa028c2" tableName="UserInboxes">
+            <column name="parent_list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-212">
+        <createIndex indexName="UserInboxes_to_user_id_c2f4768a" tableName="UserInboxes">
+            <column name="to_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-213">
+        <createIndex indexName="Users_groups_group_id_2ddde7ed" tableName="Users_groups">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-214">
+        <createIndex indexName="Users_groups_user_id_d0013979" tableName="Users_groups">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-215">
+        <createIndex indexName="Users_terms_of_services_id_709cfa42" tableName="Users">
+            <column name="terms_of_services_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-216">
+        <createIndex indexName="Users_user_permissions_permission_id_7995fa19" tableName="Users_user_permissions">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-217">
+        <createIndex indexName="Users_user_permissions_user_id_c976b39e" tableName="Users_user_permissions">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-218">
+        <createIndex indexName="auth_group_permissions_group_id_b120cbf9" tableName="auth_group_permissions">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-219">
+        <createIndex indexName="auth_group_permissions_permission_id_84c5c92e" tableName="auth_group_permissions">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-220">
+        <createIndex indexName="auth_permission_content_type_id_2f476e4b" tableName="auth_permission">
+            <column name="content_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-221">
+        <createIndex indexName="background_task_attempts_a9ade23d" tableName="background_task">
+            <column name="attempts"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-222">
+        <createIndex indexName="background_task_completedtask_attempts_772a6783" tableName="background_task_completedtask">
+            <column name="attempts"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-223">
+        <createIndex indexName="background_task_completedtask_creator_content_type_id_21d6a741" tableName="background_task_completedtask">
+            <column name="creator_content_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-224">
+        <createIndex indexName="background_task_completedtask_failed_at_3de56618" tableName="background_task_completedtask">
+            <column name="failed_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-225">
+        <createIndex indexName="background_task_completedtask_locked_at_29c62708" tableName="background_task_completedtask">
+            <column name="locked_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-226">
+        <createIndex indexName="background_task_completedtask_locked_by_edc8a213" tableName="background_task_completedtask">
+            <column name="locked_by"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-227">
+        <createIndex indexName="background_task_completedtask_priority_9080692e" tableName="background_task_completedtask">
+            <column name="priority"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-228">
+        <createIndex indexName="background_task_completedtask_queue_61fb0415" tableName="background_task_completedtask">
+            <column name="queue"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-229">
+        <createIndex indexName="background_task_completedtask_run_at_77c80f34" tableName="background_task_completedtask">
+            <column name="run_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-230">
+        <createIndex indexName="background_task_completedtask_task_hash_91187576_like" tableName="background_task_completedtask">
+            <column name="task_hash"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-231">
+        <createIndex indexName="background_task_completedtask_task_name_388dabc2" tableName="background_task_completedtask">
+            <column name="task_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-232">
+        <createIndex indexName="background_task_creator_content_type_id_61cc9af3" tableName="background_task">
+            <column name="creator_content_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-233">
+        <createIndex indexName="background_task_failed_at_b81bba14" tableName="background_task">
+            <column name="failed_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-234">
+        <createIndex indexName="background_task_locked_at_0fb0f225" tableName="background_task">
+            <column name="locked_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-235">
+        <createIndex indexName="background_task_locked_by_db7779e3_like" tableName="background_task">
+            <column name="locked_by"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-236">
+        <createIndex indexName="background_task_priority_88bdbce9" tableName="background_task">
+            <column name="priority"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-237">
+        <createIndex indexName="background_task_queue_1d5f3a40" tableName="background_task">
+            <column name="queue"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-238">
+        <createIndex indexName="background_task_run_at_7baca3aa" tableName="background_task">
+            <column name="run_at"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-239">
+        <createIndex indexName="background_task_task_hash_d8f233bd" tableName="background_task">
+            <column name="task_hash"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-240">
+        <createIndex indexName="background_task_task_name_4562d56a" tableName="background_task">
+            <column name="task_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-241">
+        <createIndex indexName="compelld_app_activity_activity_category_id_fdeb7457" tableName="compelld_app_activity">
+            <column name="activity_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-242">
+        <createIndex indexName="compelld_app_activity_parent_activity_id_32408115" tableName="compelld_app_activity">
+            <column name="parent_activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-243">
+        <createIndex indexName="compelld_app_activity_place_id_1b3a3a20" tableName="compelld_app_activity">
+            <column name="place_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-244">
+        <createIndex indexName="compelld_app_activity_user_id_31b6ec64" tableName="compelld_app_activity">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-245">
+        <createIndex indexName="compelld_app_activityasset_activity_id_2a0b4288" tableName="compelld_app_activityasset">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-246">
+        <createIndex indexName="compelld_app_activityasset_user_id_b1c4ecdd" tableName="compelld_app_activityasset">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-247">
+        <createIndex indexName="compelld_app_activitycateg_parent_activity_category_i_197794da" tableName="compelld_app_activitycategory">
+            <column name="parent_activity_category_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-248">
+        <createIndex indexName="compelld_app_activitylist_activity_id_20b7007d" tableName="compelld_app_activitylist">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-249">
+        <createIndex indexName="compelld_app_activitylist_list_id_f79762b4" tableName="compelld_app_activitylist">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-250">
+        <createIndex indexName="compelld_app_activitylist_user_id_356a4e3e" tableName="compelld_app_activitylist">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-251">
+        <createIndex indexName="compelld_app_deviceinfo_user_id_13428615" tableName="compelld_app_deviceinfo">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-252">
+        <createIndex indexName="compelld_app_follower_followed_by_id_575a619c" tableName="compelld_app_follower">
+            <column name="followed_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-253">
+        <createIndex indexName="compelld_app_follower_followed_id_54e52737" tableName="compelld_app_follower">
+            <column name="followee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-254">
+        <createIndex indexName="compelld_app_friendlist_friend_user_id_id_803f3f5a" tableName="compelld_app_friendlist">
+            <column name="compelld_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-255">
+        <createIndex indexName="compelld_app_friendlist_user_id_a2a459f4" tableName="compelld_app_friendlist">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-256">
+        <createIndex indexName="compelld_app_geofence_activity_id_f9329b6a" tableName="compelld_app_geofence">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-257">
+        <createIndex indexName="compelld_app_geofence_user_id_fa109473" tableName="compelld_app_geofence">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-258">
+        <createIndex indexName="compelld_app_list_parent_list_id_fd20861a" tableName="compelld_app_list">
+            <column name="parent_list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-259">
+        <createIndex indexName="compelld_app_list_user_id_642a4a7f" tableName="compelld_app_list">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-260">
+        <createIndex indexName="compelld_app_place_place_type_id_6b73d766" tableName="compelld_app_place">
+            <column name="place_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-261">
+        <createIndex indexName="compelld_app_ratings_activity_id_b4b3e897" tableName="compelld_app_ratings">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-262">
+        <createIndex indexName="compelld_app_ratings_place_id_54d72963" tableName="compelld_app_ratings">
+            <column name="place_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-263">
+        <createIndex indexName="compelld_app_ratings_user_id_e3f175d3" tableName="compelld_app_ratings">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-264">
+        <createIndex indexName="compelld_app_reminder_activity_id_7fe5267a" tableName="compelld_app_reminder">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-265">
+        <createIndex indexName="compelld_app_reminder_user_id_78f906fe" tableName="compelld_app_reminder">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-266">
+        <createIndex indexName="compelld_app_share_activity_id_80cdad70" tableName="compelld_app_share">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-267">
+        <createIndex indexName="compelld_app_share_list_id_5abe77e6" tableName="compelld_app_share">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-268">
+        <createIndex indexName="compelld_app_share_shared_by_id_238838e6" tableName="compelld_app_share">
+            <column name="shared_by_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-269">
+        <createIndex indexName="compelld_app_share_shared_with_id_0e93bbd7" tableName="compelld_app_share">
+            <column name="shared_with_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-270">
+        <createIndex indexName="compelld_app_user_groups_group_id_d4c0de32" tableName="compelld_app_user_groups">
+            <column name="group_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-271">
+        <createIndex indexName="compelld_app_user_groups_user_id_f03b5bdb" tableName="compelld_app_user_groups">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-272">
+        <createIndex indexName="compelld_app_user_user_permissions_permission_id_78df7bf7" tableName="compelld_app_user_user_permissions">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-273">
+        <createIndex indexName="compelld_app_user_user_permissions_user_id_22b6a122" tableName="compelld_app_user_user_permissions">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-274">
+        <createIndex indexName="compelld_app_userinbox_activity_id_c448c4f2" tableName="compelld_app_userinbox">
+            <column name="activity_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-275">
+        <createIndex indexName="compelld_app_userinbox_from_user_id_450ee63d" tableName="compelld_app_userinbox">
+            <column name="from_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-276">
+        <createIndex indexName="compelld_app_userinbox_list_id_6eb78f59" tableName="compelld_app_userinbox">
+            <column name="list_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-277">
+        <createIndex indexName="compelld_app_userinbox_to_user_id_d92fcb29" tableName="compelld_app_userinbox">
+            <column name="to_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-278">
+        <createIndex indexName="django_admin_log_content_type_id_c4bce8eb" tableName="django_admin_log">
+            <column name="content_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-279">
+        <createIndex indexName="django_session_expire_date_a5c62663" tableName="django_session">
+            <column name="expire_date"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-280">
+        <addForeignKeyConstraint baseColumnNames="activity_category_id" baseTableName="Activities" constraintName="Activities_activity_category_id_9c551642_fk_ActivityC" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="ActivityCategories" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-281">
+        <addForeignKeyConstraint baseColumnNames="copied_from_id" baseTableName="Activities" constraintName="Activities_copied_from_id_dc7660b9_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-282">
+        <addForeignKeyConstraint baseColumnNames="copied_from_user_id" baseTableName="Activities" constraintName="Activities_copied_from_user_id_741bba3e_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-283">
+        <addForeignKeyConstraint baseColumnNames="list_category_id" baseTableName="Activities" constraintName="Activities_list_category_id_2689948f_fk_ListCategories_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="ListCategories" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-284">
+        <addForeignKeyConstraint baseColumnNames="originated_from_id" baseTableName="Activities" constraintName="Activities_originated_from_id_dfe0e750_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-285">
+        <addForeignKeyConstraint baseColumnNames="parent_activity_id" baseTableName="Activities" constraintName="Activities_parent_activity_id_0cf24a9e_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-286">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="Activities" constraintName="Activities_place_id_605ba543_fk_Places_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Places" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-287">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Activities" constraintName="Activities_user_id_85702ab4_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-288">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="ActivityAssets" constraintName="ActivityAssets_activity_id_fab92a2a_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-289">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="ActivityAssets" constraintName="ActivityAssets_user_id_3dc25968_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-290">
+        <addForeignKeyConstraint baseColumnNames="parent_activity_category_id" baseTableName="ActivityCategories" constraintName="ActivityCategories_parent_activity_cate_262b3149_fk_ActivityC" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="ActivityCategories" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-291">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="ActivityLists" constraintName="ActivityLists_activity_id_e62ec092_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-292">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="ActivityLists" constraintName="ActivityLists_list_id_0f896df6_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-293">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="ActivityLists" constraintName="ActivityLists_user_id_8766573e_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-294">
+        <addForeignKeyConstraint baseColumnNames="device_id_id" baseTableName="ApplicationConfigs" constraintName="ApplicationConfigs_device_id_id_6c01def5_fk_DeviceInfos_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="DeviceInfos" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-295">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="ApplicationConfigs" constraintName="ApplicationConfigs_user_id_0a1be298_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-296">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="CollaborativeListActivities" constraintName="CollaborativeListAct_activity_id_b86d5d38_fk_Activitie" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-297">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="CollaborativeListActivities" constraintName="CollaborativeListActivities_list_id_0452bce4_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-298">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="CollaborativeListActivities" constraintName="CollaborativeListActivities_user_id_ad26b45a_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-299">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="CollaborativeListGeoFences" constraintName="CollaborativeListGeoFences_place_id_8b624b12_fk_Places_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Places" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-300">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="CollaborativeListGeoFences" constraintName="CollaborativeListGeoFences_user_id_04411db2_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-301">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="CollaborativeListGeoFences" constraintName="CollaborativeListGeo_activity_id_5168ec88_fk_Collabora" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="CollaborativeListActivities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-302">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="CollaborativeListReminders" constraintName="CollaborativeListRem_activity_id_f6bd83d0_fk_Collabora" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="CollaborativeListActivities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-303">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="CollaborativeListReminders" constraintName="CollaborativeListReminders_user_id_96539333_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-304">
+        <addForeignKeyConstraint baseColumnNames="deleted_by_id" baseTableName="CollaborativeListRoles" constraintName="CollaborativeListRoles_deleted_by_id_739b0f5c_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-305">
+        <addForeignKeyConstraint baseColumnNames="invited_by_id" baseTableName="CollaborativeListRoles" constraintName="CollaborativeListRoles_invited_by_id_843308f5_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-306">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="CollaborativeListRoles" constraintName="CollaborativeListRoles_list_id_9e60a7a2_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-307">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="CollaborativeListRoles" constraintName="CollaborativeListRoles_user_id_397a4ae3_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-308">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="DeviceInfos" constraintName="DeviceInfos_user_id_b2da0a49_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-309">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="FeaturedLists" constraintName="FeaturedLists_list_id_574e1864_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-310">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="FeaturedLists" constraintName="FeaturedLists_user_id_6a22160b_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-311">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="FeaturedUsersLists" constraintName="FeaturedUsersLists_list_id_c0e2c2ad_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-312">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="FeaturedUsersLists" constraintName="FeaturedUsersLists_user_id_3addc797_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-313">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="FeaturedUsers" constraintName="FeaturedUsers_user_id_20ce47fd_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-314">
+        <addForeignKeyConstraint baseColumnNames="followed_by_id" baseTableName="Followers" constraintName="Followers_followed_by_id_6ee9e054_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-315">
+        <addForeignKeyConstraint baseColumnNames="followee_id" baseTableName="Followers" constraintName="Followers_followee_id_ec66e011_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-316">
+        <addForeignKeyConstraint baseColumnNames="compelld_user_id" baseTableName="FriendLists" constraintName="FriendLists_compelld_user_id_02f49dec_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-317">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="FriendLists" constraintName="FriendLists_user_id_10d3a979_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-318">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="FriendSearchKeywords" constraintName="FriendSearchKeywords_user_id_a0dcd00d_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-319">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="GeoFences" constraintName="GeoFences_activity_id_d65da973_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-320">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="GeoFences" constraintName="GeoFences_place_id_3df3e623_fk_Places_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Places" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-321">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="GeoFences" constraintName="GeoFences_user_id_8388ffb6_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-322">
+        <addForeignKeyConstraint baseColumnNames="parent_list_category_id" baseTableName="ListCategories" constraintName="ListCategories_parent_list_category_0737dd3f_fk_ListCateg" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="ListCategories" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-323">
+        <addForeignKeyConstraint baseColumnNames="followed_by_id" baseTableName="ListFollowers" constraintName="ListFollowers_followed_by_id_b58e880c_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-324">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="ListFollowers" constraintName="ListFollowers_list_id_052c8963_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-325">
+        <addForeignKeyConstraint baseColumnNames="child_list_id" baseTableName="ListMappings" constraintName="ListMapping_child_list_id_fc800676_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-326">
+        <addForeignKeyConstraint baseColumnNames="parent_list_id" baseTableName="ListMappings" constraintName="ListMapping_parent_list_id_d8448631_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-327">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="ListMappings" constraintName="ListMapping_user_id_4676babc_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-328">
+        <addForeignKeyConstraint baseColumnNames="list_category_id" baseTableName="Lists" constraintName="Lists_list_category_id_a8756374_fk_ListCategories_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="ListCategories" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-329">
+        <addForeignKeyConstraint baseColumnNames="originated_from_id" baseTableName="Lists" constraintName="Lists_originated_from_id_e48c3d6d_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-330">
+        <addForeignKeyConstraint baseColumnNames="parent_list_id" baseTableName="Lists" constraintName="Lists_parent_list_id_053a3775_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-331">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Lists" constraintName="Lists_user_id_6303ce03_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-332">
+        <addForeignKeyConstraint baseColumnNames="place_type_id" baseTableName="Places" constraintName="Places_place_type_id_d3b42df0_fk_PlaceTypes_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="PlaceTypes" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-333">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="Ratings" constraintName="Ratings_activity_id_6d50b15a_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-334">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="Ratings" constraintName="Ratings_place_id_9090432b_fk_Places_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Places" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-335">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Ratings" constraintName="Ratings_user_id_31a8a7d1_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-336">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="Reminders" constraintName="Reminders_activity_id_4179429b_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-337">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Reminders" constraintName="Reminders_user_id_c6839c25_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-338">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="SearchKeywords" constraintName="SearchKeywords_user_id_66a6e7fd_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-339">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="Shares" constraintName="Shares_activity_id_de7a2f19_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-340">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="Shares" constraintName="Shares_list_id_f094b66f_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-341">
+        <addForeignKeyConstraint baseColumnNames="shared_by_id" baseTableName="Shares" constraintName="Shares_shared_by_id_96f74b1f_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-342">
+        <addForeignKeyConstraint baseColumnNames="shared_with_id" baseTableName="Shares" constraintName="Shares_shared_with_id_029e12ce_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-343">
+        <addForeignKeyConstraint baseColumnNames="home_module_id" baseTableName="UserHomeModules" constraintName="UserHomeModules_home_module_id_aa2eba9e_fk_HomeModules_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="HomeModules" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-344">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="UserHomeModules" constraintName="UserHomeModules_user_id_8bf0d5e7_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-345">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="UserInboxes" constraintName="UserInboxes_activity_id_5d5d1d1a_fk_Activities_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Activities" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-346">
+        <addForeignKeyConstraint baseColumnNames="followed_user_id" baseTableName="UserInboxes" constraintName="UserInboxes_followed_user_id_2fa9c019_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-347">
+        <addForeignKeyConstraint baseColumnNames="from_user_id" baseTableName="UserInboxes" constraintName="UserInboxes_from_user_id_c65780d2_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-348">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="UserInboxes" constraintName="UserInboxes_list_id_1c17be20_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-349">
+        <addForeignKeyConstraint baseColumnNames="parent_list_id" baseTableName="UserInboxes" constraintName="UserInboxes_parent_list_id_7aa028c2_fk_Lists_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Lists" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-350">
+        <addForeignKeyConstraint baseColumnNames="to_user_id" baseTableName="UserInboxes" constraintName="UserInboxes_to_user_id_c2f4768a_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-351">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="UserVerifications" constraintName="UserVerifications_user_id_75ae358b_fk_Users_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-352">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="Users_groups" constraintName="Users_groups_group_id_2ddde7ed_fk_auth_group_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_group" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-353">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Users_groups" constraintName="Users_groups_user_id_d0013979_fk_Users_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-354">
+        <addForeignKeyConstraint baseColumnNames="terms_of_services_id" baseTableName="Users" constraintName="Users_terms_of_services_id_709cfa42_fk_TermsOfServices_uuid" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="uuid" referencedTableName="TermsOfServices" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-355">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="Users_user_permissions" constraintName="Users_user_permissio_permission_id_7995fa19_fk_auth_perm" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_permission" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-356">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="Users_user_permissions" constraintName="Users_user_permissions_user_id_c976b39e_fk_Users_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Users" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-357">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="auth_group_permissions" constraintName="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_permission" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-358">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="auth_group_permissions" constraintName="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_group" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-359">
+        <addForeignKeyConstraint baseColumnNames="content_type_id" baseTableName="auth_permission" constraintName="auth_permission_content_type_id_2f476e4b_fk_django_co" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="django_content_type" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-360">
+        <addForeignKeyConstraint baseColumnNames="creator_content_type_id" baseTableName="background_task_completedtask" constraintName="background_task_comp_creator_content_type_21d6a741_fk_django_co" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="django_content_type" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-361">
+        <addForeignKeyConstraint baseColumnNames="creator_content_type_id" baseTableName="background_task" constraintName="background_task_creator_content_type_61cc9af3_fk_django_co" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="django_content_type" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-362">
+        <addForeignKeyConstraint baseColumnNames="activity_category_id" baseTableName="compelld_app_activity" constraintName="compelld_app_activit_activity_category_id_fdeb7457_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activitycategory" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-363">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_activitylist" constraintName="compelld_app_activit_activity_id_20b7007d_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-364">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_activityasset" constraintName="compelld_app_activit_activity_id_2a0b4288_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-365">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="compelld_app_activitylist" constraintName="compelld_app_activit_list_id_f79762b4_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_list" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-366">
+        <addForeignKeyConstraint baseColumnNames="parent_activity_category_id" baseTableName="compelld_app_activitycategory" constraintName="compelld_app_activit_parent_activity_cate_197794da_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activitycategory" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-367">
+        <addForeignKeyConstraint baseColumnNames="parent_activity_id" baseTableName="compelld_app_activity" constraintName="compelld_app_activit_parent_activity_id_32408115_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-368">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="compelld_app_activity" constraintName="compelld_app_activit_place_id_1b3a3a20_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_place" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-369">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_activitylist" constraintName="compelld_app_activit_user_id_356a4e3e_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-370">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_activityasset" constraintName="compelld_app_activit_user_id_b1c4ecdd_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-371">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_activity" constraintName="compelld_app_activity_user_id_31b6ec64_fk_compelld_app_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-372">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_deviceinfo" constraintName="compelld_app_devicei_user_id_13428615_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-373">
+        <addForeignKeyConstraint baseColumnNames="followed_by_id" baseTableName="compelld_app_follower" constraintName="compelld_app_followe_followed_by_id_575a619c_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-374">
+        <addForeignKeyConstraint baseColumnNames="followee_id" baseTableName="compelld_app_follower" constraintName="compelld_app_followe_followee_id_561d9dbf_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-375">
+        <addForeignKeyConstraint baseColumnNames="compelld_user_id" baseTableName="compelld_app_friendlist" constraintName="compelld_app_friendl_compelld_user_id_29e5520c_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-376">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_friendlist" constraintName="compelld_app_friendl_user_id_a2a459f4_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-377">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_geofence" constraintName="compelld_app_geofenc_activity_id_f9329b6a_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-378">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="compelld_app_geofence" constraintName="compelld_app_geofenc_place_id_9aa8076d_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_place" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-379">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_geofence" constraintName="compelld_app_geofence_user_id_fa109473_fk_compelld_app_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-380">
+        <addForeignKeyConstraint baseColumnNames="parent_list_id" baseTableName="compelld_app_list" constraintName="compelld_app_list_parent_list_id_fd20861a_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_list" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-381">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_list" constraintName="compelld_app_list_user_id_642a4a7f_fk_compelld_app_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-382">
+        <addForeignKeyConstraint baseColumnNames="place_type_id" baseTableName="compelld_app_place" constraintName="compelld_app_place_place_type_id_6b73d766_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_placetype" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-383">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_ratings" constraintName="compelld_app_ratings_activity_id_b4b3e897_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-384">
+        <addForeignKeyConstraint baseColumnNames="place_id" baseTableName="compelld_app_ratings" constraintName="compelld_app_ratings_place_id_54d72963_fk_compelld_app_place_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_place" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-385">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_ratings" constraintName="compelld_app_ratings_user_id_e3f175d3_fk_compelld_app_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-386">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_reminder" constraintName="compelld_app_reminde_activity_id_7fe5267a_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-387">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_reminder" constraintName="compelld_app_reminder_user_id_78f906fe_fk_compelld_app_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-388">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_share" constraintName="compelld_app_share_activity_id_80cdad70_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-389">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="compelld_app_share" constraintName="compelld_app_share_list_id_5abe77e6_fk_compelld_app_list_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_list" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-390">
+        <addForeignKeyConstraint baseColumnNames="shared_by_id" baseTableName="compelld_app_share" constraintName="compelld_app_share_shared_by_id_238838e6_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-391">
+        <addForeignKeyConstraint baseColumnNames="shared_with_id" baseTableName="compelld_app_share" constraintName="compelld_app_share_shared_with_id_0e93bbd7_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-392">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_user_groups" constraintName="compelld_app_user_gr_user_id_f03b5bdb_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-393">
+        <addForeignKeyConstraint baseColumnNames="group_id" baseTableName="compelld_app_user_groups" constraintName="compelld_app_user_groups_group_id_d4c0de32_fk_auth_group_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_group" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-394">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="compelld_app_user_user_permissions" constraintName="compelld_app_user_us_permission_id_78df7bf7_fk_auth_perm" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="auth_permission" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-395">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_user_user_permissions" constraintName="compelld_app_user_us_user_id_22b6a122_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-396">
+        <addForeignKeyConstraint baseColumnNames="activity_id" baseTableName="compelld_app_userinbox" constraintName="compelld_app_userinb_activity_id_c448c4f2_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_activity" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-397">
+        <addForeignKeyConstraint baseColumnNames="from_user_id" baseTableName="compelld_app_userinbox" constraintName="compelld_app_userinb_from_user_id_450ee63d_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-398">
+        <addForeignKeyConstraint baseColumnNames="to_user_id" baseTableName="compelld_app_userinbox" constraintName="compelld_app_userinb_to_user_id_d92fcb29_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-399">
+        <addForeignKeyConstraint baseColumnNames="list_id" baseTableName="compelld_app_userinbox" constraintName="compelld_app_userinbox_list_id_6eb78f59_fk_compelld_app_list_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_list" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-400">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="compelld_app_userverification" constraintName="compelld_app_userver_user_id_864534b0_fk_compelld_" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="compelld_app_user" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-401">
+        <addForeignKeyConstraint baseColumnNames="content_type_id" baseTableName="django_admin_log" constraintName="django_admin_log_content_type_id_c4bce8eb_fk_django_co" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="django_content_type" validate="true"/>
+    </changeSet>
+    <changeSet author="aishu (generated)" id="1557303664046-402">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="django_admin_log" constraintName="django_admin_log_user_id_c564eba6_fk_Users_user_id" deferrable="true" initiallyDeferred="true" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="Users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

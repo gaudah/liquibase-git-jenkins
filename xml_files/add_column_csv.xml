@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<changeSet author="liquibase-docs3" id="loadData-example3">
+<loadData tableName="department"
+	    encoding="UTF-8"
+            file="./csv_files/dept.csv"
+	    separator=","
+            quotchar="'"
+            schemaName="public">
+        <column name="id" type="NUMERIC"/>
+        <column name="dept_name" type="STRING"/>
+    </loadData>
+
+<loadData tableName="employee"
+	    encoding="UTF-8"
+            file="./csv_files/emp.csv"
+	    separator=","
+            quotchar="'"
+            schemaName="public">
+	<column name="id" type="NUMERIC"/>
+        <column name="emp_name" type="STRING"/>
+	<column name="dept" type="NUMERIC"/>
+    </loadData>
+
+</changeSet>
+</databaseChangeLog>
+    
+
+
