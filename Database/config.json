@@ -1,0 +1,10 @@
+{
+  "protocol": "jdbc:postgresql",
+  "host": "10.151.33.2",
+  "port": "31571",
+  "db_name": "postgresdb",
+  "username": "postgresadmin",
+  "password": "admin123",
+  "rollback_count": 2,
+  "db_engine": "PostgreSQL"
+}
