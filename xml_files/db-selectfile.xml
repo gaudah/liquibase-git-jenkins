@@ -6,7 +6,7 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 <changeSet author="liquibase-docs" id="sqlFile-example">
 <sqlFile dbms="postgresql"
             encoding="utf8"
-            endDelimiter=";"
+            endDelimiter="\n"
             path="file.sql"
             relativeToChangelogFile="true"
             splitStatements="true"
