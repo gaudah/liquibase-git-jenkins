@@ -6,6 +6,8 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 <include file="sql_files/changeset_sql.sql" relativeToChangelogFile="true"/>
 <include file="xml_files/db-changelog-1.0.xml"/> 
 <include file="xml_files/db-changelog-1.1.xml"/> 
+<include file="xml_files/add_column_val.xml"/>
+<include file="xml_files/add_column_csv.xml" relativeToChangelogFile="true"/>
 <include file="xml_files/db-changelog-1.2.xml"/>
 <include file="json_files/accountschangelog.json"/>
 <!--<include file="xml_files/add_column_csv.xml" relativeToChangelogFile="true"/>-->
@@ -14,8 +16,6 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 <!--<include file="groovy_files/test.groovy"/>--> 
 <!--<include file="groovy_files/table.groovy"/>--> 
 <!--<include file="groovy_files/test1.groovy"/>-->
-<include file="xml_files/add_column_val.xml"/>
-<include file="xml_files/add_column_csv.xml" relativeToChangelogFile="true"/>
 <!--<include file="xml_files/db-select.xml"/>-->
 <!--<include file="xml_files/db-executecommand.xml"/>-->
 <!--<include file="xml_files/db-selectfile.xml"/>-->
