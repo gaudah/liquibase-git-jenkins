@@ -3,16 +3,13 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-<changeSet author="liquibase-docs17" id="sqlFile-example17">
+<changeSet author="liquibase-docs71" id="sqlFile-example71">
 <sqlFile dbms="postgresql"
             encoding="utf8"
             endDelimiter=";"
-            path="file.sql"
+            path="sql_commands.sql"
             relativeToChangelogFile="true"
             splitStatements="true"
             stripComments="true"/>
-<!--<changeSet id="select_department" author="aishwarya">
-   <sql>select * from department</sql>
-  </changeSet>-->
 </changeSet>
  </databaseChangeLog>
