@@ -3,3 +3,8 @@ select * from employee;
 select * from person;
 select * from state;
 select * from testtable;
+\d department;
+\d employee;
+\d person;
+\d state;
+\d testtable;
