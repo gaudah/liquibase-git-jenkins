@@ -31,11 +31,11 @@ class TestDB {
 
          System.out.println("Loading org.postgresql.Driver Successful");
 
-         String url = "jdbc:postgresql://localhost/aishu";
+         String url = "jdbc:postgresql://localhost/postgres";
 
          Properties props = new Properties();
 
-         props.setProperty("user","aishu");
+         props.setProperty("user","postgres");
 
          props.setProperty("password","iauro100");
 
@@ -47,7 +47,7 @@ class TestDB {
 
          //url = "jdbc:postgresql://localhost/database?user=user&password=password&ssl=true";
 
-         url = "jdbc:postgresql://localhost/aishu?user=aishu&password=iauro100&ssl=true";
+         url = "jdbc:postgresql://localhost/postgres?user=postgres&password=iauro100&ssl=true";
 
          Connection conn = DriverManager.getConnection(url);
 
